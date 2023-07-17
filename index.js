@@ -1,10 +1,11 @@
 const express= require("express")
-const {userRouter} = require("./routes/user.routes")
+const { boardRouter} = require("./routes/board.router")
 const {connection} = require("./db")
 const app=express()
 require("dotenv").config()
 const cors = require("cors")
-const { postRouter } = require("./routes/post.routes")
+const { taskRouter } = require("./routes/task.router")
+const {subtaskRouter} = require("./routes/subtask.router")
 const { logoutModel } = require("./models/logout.model")
 
 app.use(express.json())
@@ -24,9 +25,9 @@ app.get('/logout', async(req, res)=>{
     }
   }
 })
-
-app.use("/users",userRouter)
-app.use("/posts",postRouter)
+app.use("/boards",boardRouter)
+app.use("/tasks",taskRouter)
+app.use("/subtasks",subtaskRouter)
 
 
 
